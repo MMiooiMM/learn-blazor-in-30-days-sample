@@ -1,0 +1,24 @@
+﻿@page "/user";
+
+<h3>User</h3>
+
+<EditForm Model="user" OnValidSubmit="@HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <p>
+        <ValidationMessage For="@(()=>user.Name)" />
+        <label>
+            Name:
+            <InputText @bind-Value="user.Name" />
+        </label>
+    </p>
+    <p>
+        <label>
+            Age:
+            <InputNumber @bind-Value="user.Age" />
+        </label>
+    </p>
+
+    <button type="submit">Submit</button>
+</EditForm>
