@@ -1,0 +1,17 @@
+﻿@page "/CustomPage"
+@page "/CustomPage2"
+@page "/CustomPage/{text}"
+@page "/counter/CustomPage"
+@page "/CustomPage/counter"
+
+<h1>Blazor is @Text!</h1>
+
+@code {
+    [Parameter]
+    public string Text { get; set; }
+
+    protected override void OnInitialized()
+    {
+        Text = Text ?? "fantastic";
+    }
+}
