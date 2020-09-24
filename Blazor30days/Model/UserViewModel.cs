@@ -4,7 +4,7 @@ namespace Blazor30days.Model
 {
     public class UserViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "姓名欄位為必填！")]
         public string Name { get; set; }
 
         public int Age { get; set; }
