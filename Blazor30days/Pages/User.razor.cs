@@ -27,7 +27,11 @@ namespace Blazor30days.Pages
             }
             else
             {
-                Logger.LogInformation($"Fail: {editContext.GetValidationMessages().Aggregate((x, y) => $"{x}, {y}")}");
+                Logger.LogInformation($"Fail: {editContext.GetValidationMessages()?.Aggregate((x, y) => $"{x}, {y}")}");
+                // var a = editContext.GetValidationMessages(accessor: () => editContext.Model.Address).ToList();
+                var b = editContext.GetValidationMessages(new FieldIdentifier(editContext.Model, "Name")).ToList();
+                var bd = editContext.GetValidationMessages(new FieldIdentifier(editContext.Model, "Email")).ToList();
+                var c = editContext.GetValidationMessages().ToList();
             }
         }
     }

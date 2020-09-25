@@ -5,7 +5,6 @@
 <EditForm EditContext="@editContext" OnSubmit="@HandleSubmit">
     <DataAnnotationsValidator />
     <ValidationSummary />
-
     <p>
         <ValidationMessage For="@(()=>user.Name)" />
         <label>
@@ -14,9 +13,57 @@
         </label>
     </p>
     <p>
+        <ValidationMessage For="@(()=>user.Age)" />
         <label>
             Age:
             <InputNumber @bind-Value="user.Age" />
+        </label>
+    </p>
+    <p>
+        <ValidationMessage For="@(()=>user.Phone)" />
+        <label>
+            Phone:
+            <InputText @bind-Value="user.Phone" />
+        </label>
+    </p>
+    <p>
+        <ValidationMessage For="@(()=>user.Email)" />
+        <label>
+            Email:
+            <InputText @bind-Value="user.Email" />
+        </label>
+    </p>
+    <p>
+        <ValidationMessage For="@(()=>user.Address)" />
+        <label>
+            Address:
+            <InputText @bind-Value="user.Address" />
+        </label>
+    </p>
+    <p>
+        <ValidationMessage For="@(()=>user.UserType)" />
+        <label>
+            UserType:
+            <InputSelect @bind-Value="user.UserType">
+                @foreach (var value in Enum.GetValues(typeof(UserType)))
+                {
+                    <option>@value</option>
+                }
+            </InputSelect>
+        </label>
+    </p>
+    <p>
+        <ValidationMessage For="@(()=>user.StartDate)" />
+        <label>
+            StartDate:
+            <InputDate @bind-Value="user.StartDate"></InputDate>
+        </label>
+    </p>
+    <p>
+        <ValidationMessage For="@(()=>user.EndDate)" />
+        <label>
+            EndDate:
+            <InputDate @bind-Value="user.EndDate"></InputDate>
         </label>
     </p>
 
