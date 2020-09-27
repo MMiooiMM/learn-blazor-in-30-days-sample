@@ -16,7 +16,7 @@
         <ValidationMessage For="@(()=>user.Age)" />
         <label>
             Age:
-            <InputNumber @bind-Value="user.Age" />
+            <InputNumber @bind-Value="user.Age" ParsingErrorMessage="該數字超過系統限制！" />
         </label>
     </p>
     <p>

@@ -1,0 +1,67 @@
+﻿@page "/day12sample"
+
+<h3>Day12Sample</h3>
+
+<p>
+    <input @bind="currentValue" />
+</p>
+
+@code {
+    private string currentValue;
+}
+
+<p>
+    <input value="@currentValue2"
+           @onchange="@((ChangeEventArgs __e) => currentValue2 =
+        __e.Value.ToString())" />
+</p>
+
+@code {
+    private string currentValue2;
+}
+
+<p>
+    <input @bind="currentValue3" @bind:event="oninput" />
+</p>
+
+@code {
+    private string currentValue3;
+}
+
+<p>
+    <input @bind="currentNumberValue" />
+</p>
+
+@code {
+    private int currentNumberValue;
+}
+
+<h1>Parent Component</h1>
+
+<p>Parent <code>year</code>: @year</p>
+
+<button @onclick="UpdateYear">Update Parent <code>year</code></button>
+
+<Day12SampleChild @bind-Year="year" @bind-Year:event="YearChanged" />
+
+@code {
+    private Random r = new Random();
+    private int year = 1979;
+
+    private void UpdateYear()
+    {
+        year = r.Next(1950, 2021);
+    }
+}
+
+<button class="btn btn-primary" @onclick="SayHello">
+    Say hello
+</button>
+@code {
+    private void SayHello(MouseEventArgs e)
+    {
+        Console.WriteLine("Hello!");
+    }
+}
+
+<button @onclick="@(e => Console.WriteLine("Hello!"))">Say hello</button>
