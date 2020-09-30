@@ -1,0 +1,18 @@
+﻿@page "/day14sample"
+<h3>Day14Sample</h3>
+
+<Day14SampleChild ChildOnInit="ChildOnInit" ></Day14SampleChild>
+Parent: @year
+@code {
+    private int year = 1979;
+
+    private void YearChange(int value)
+    {
+        year = value;
+    }
+
+    private void ChildOnInit(int value)
+    {
+        Console.WriteLine(value);
+    }
+}

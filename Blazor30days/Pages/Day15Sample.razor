@@ -1,0 +1,11 @@
+﻿@page "/day15sample"
+<h3>Day15Sample</h3>
+
+<EditForm Model="User">
+
+<Day15SampleChild @bind-Value="User.Name"></Day15SampleChild>
+</EditForm>
+
+@code {
+    public UserViewModel User = new UserViewModel();
+}

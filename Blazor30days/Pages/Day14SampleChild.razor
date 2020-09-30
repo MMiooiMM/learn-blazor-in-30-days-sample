@@ -1,0 +1,29 @@
+﻿<h3>Day14SampleChild</h3>
+Child: @Year
+<button @onclick="QQ">QQ</button>
+
+@code {
+    [Parameter]
+    public int Year { get; set; }
+
+    [Parameter]
+    public EventCallback<int> YearChanged { get; set; }
+
+    [Parameter]
+    public int Month { get; set; }
+
+    [Parameter]
+    public EventCallback<int> ChildOnInit { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Console.WriteLine("OnInitializedAsync, start.");
+        await ChildOnInit.InvokeAsync(0);
+        Console.WriteLine("OnInitializedAsync, end.");
+    }
+
+    private async Task QQ()
+    {
+        await YearChanged.InvokeAsync(2000);
+    }
+}

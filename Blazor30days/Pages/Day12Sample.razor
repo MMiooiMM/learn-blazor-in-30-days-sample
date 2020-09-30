@@ -42,7 +42,7 @@
 
 <button @onclick="UpdateYear">Update Parent <code>year</code></button>
 
-<Day12SampleChild @bind-Year="year" @bind-Year:event="YearChanged" />
+<Day12SampleChild Year="year" />
 
 @code {
     private Random r = new Random();
