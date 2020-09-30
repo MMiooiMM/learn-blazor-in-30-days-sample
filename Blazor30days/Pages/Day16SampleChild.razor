@@ -1,0 +1,18 @@
+﻿<h3>Day16SampleChild</h3>
+
+<div class="main">
+    <p>
+        CascadeParam1: @CascadeParam1
+    </p>
+    <p>
+        CascadeParam2: @CascadeParam2
+    </p>
+</div>
+
+@code {
+    [CascadingParameter(Name = "CascadeParam1")]
+    protected string CascadeParam1 { get; set; }
+
+    [CascadingParameter(Name = "CascadeParam2")]
+    protected string CascadeParam2 { get; set; }
+}

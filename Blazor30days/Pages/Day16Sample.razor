@@ -1,0 +1,20 @@
+﻿@page "/day16sample"
+<h3>Day16Sample</h3>
+
+<CascadingValue Name="CascadeParam1" Value="CascadeParam1">
+    <CascadingValue Name="CascadeParam2" Value="CascadeParam2">
+        <Day16SampleChild></Day16SampleChild>
+        <Day16SampleChild2></Day16SampleChild2>
+    </CascadingValue>
+</CascadingValue>
+<CascadingValue Value="CascadeParam1">
+    <CascadingValue Name="CascadeParam2" Value="CascadeParam2">
+        <Day16SampleChild></Day16SampleChild>
+        <Day16SampleChild2></Day16SampleChild2>
+    </CascadingValue>
+</CascadingValue>
+
+@code {
+    private string CascadeParam1 = "value1";
+    private string CascadeParam2 = "value2";
+}
