@@ -1,0 +1,18 @@
+﻿@typeparam TItem
+
+<h3>Day17SampleChild3</h3>
+
+<div class="container">
+    @foreach (var item in Items)
+    {
+        @Template(item)
+    }
+</div>
+
+@code {
+    [Parameter]
+    public RenderFragment<TItem> Template { get; set; }
+
+    [Parameter]
+    public IReadOnlyList<TItem> Items { get; set; }
+}

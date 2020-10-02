@@ -1,0 +1,35 @@
+﻿@page "/day17sample"
+
+<h3>Day17Sample</h3>
+
+<Day17SampleChild>
+    <Template>
+        <p>123</p>
+    </Template>
+</Day17SampleChild>
+
+<Day17SampleChild2 Items="items">
+</Day17SampleChild2>
+
+<Day17SampleChild3 Items="pets">
+    <Template>
+        <p>@context.PetId, @context.Name</p>
+    </Template>
+</Day17SampleChild3>
+
+@code {
+    private List<string> items = new List<string> { "A", "B", "C" };
+
+    private List<Pet> pets = new List<Pet>
+{
+        new Pet { PetId = 2, Name = "Mr. Bigglesworth" },
+        new Pet { PetId = 4, Name = "Salem Saberhagen" },
+        new Pet { PetId = 7, Name = "K-9" }
+    };
+
+    private class Pet
+    {
+        public int PetId { get; set; }
+        public string Name { get; set; }
+    }
+}

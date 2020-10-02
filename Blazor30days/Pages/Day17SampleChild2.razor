@@ -1,0 +1,15 @@
+﻿@typeparam TItem
+
+<h3>Day17SampleChild2</h3>
+
+<div class="container">
+    @foreach (var item in Items)
+    {
+        <p>@item</p>
+    }
+</div>
+
+@code {
+    [Parameter]
+    public IReadOnlyList<TItem> Items { get; set; }
+}
