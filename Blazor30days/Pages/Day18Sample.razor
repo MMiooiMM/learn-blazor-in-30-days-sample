@@ -1,0 +1,40 @@
+﻿@page "/day18sample"
+@inject IJSRuntime JSRuntime
+
+<h3>Day18Sample</h3>
+
+<Day18SampleChild @ref="day18SampleChild"></Day18SampleChild>
+<input @ref="InputRef" />
+
+<button type="button" @onclick="@(()=> day18SampleChild.PublicFunction())">Child Funtion</button>
+<button type="button" @onclick="SetFocus">Focus Input</button>
+a@(day18SampleChild?.ChildValue)a
+
+@code {
+    private Day18SampleChild day18SampleChild;
+    private ElementReference InputRef;
+
+    protected override Task OnInitializedAsync()
+    {
+        Console.WriteLine($"OnInitializedAsync, {day18SampleChild}");
+        return base.OnInitializedAsync();
+    }
+
+    protected override Task OnParametersSetAsync()
+    {
+        Console.WriteLine($"OnParametersSetAsync, {day18SampleChild}");
+        return base.OnParametersSetAsync();
+    }
+
+    protected override Task OnAfterRenderAsync(bool firstRender)
+    {
+        Console.WriteLine($"OnAfterRenderAsync, {day18SampleChild}");
+        return base.OnAfterRenderAsync(firstRender);
+    }
+
+    public async Task SetFocus()
+    {
+        await JSRuntime.InvokeVoidAsync(
+           "exampleJsFunctions.focusElement", InputRef);
+    }
+}

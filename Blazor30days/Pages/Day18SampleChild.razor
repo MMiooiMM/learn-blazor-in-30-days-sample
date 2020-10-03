@@ -1,0 +1,22 @@
+﻿<h3>Day18SampleChild</h3>
+
+@code {
+    public string ChildValue = "ClickMe";
+}
+
+@functions{ 
+    private void PrivateFunction()
+    {
+        Console.WriteLine("PrivateFunction");
+    }
+
+    public void PublicFunction()
+    {
+        Console.WriteLine("PublicFunction");
+    }
+
+    protected void ProtectedFunction()
+    {
+        Console.WriteLine("ProtectedFunction");
+    }
+}
