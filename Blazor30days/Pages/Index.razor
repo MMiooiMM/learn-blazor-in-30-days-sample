@@ -13,7 +13,7 @@ Welcome to your new app.
         @foreach (var route in Routes)
         {
             <li style="margin-bottom:10px">
-                <a href="@route.Url">@route.Description</a>
+                <NavLink href="@route.Url">@route.Description</NavLink>
             </li>
         }
     </ul>
@@ -22,7 +22,7 @@ Welcome to your new app.
 @code{
     IEnumerable<Route> Routes = new List<int>
 {
-        12,13,14,15,16,17,18
+        12,13,14,15,16,17,18,19
     }.Select(x => new Route
 {
     Url = $"day{x}sample",

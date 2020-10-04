@@ -1,0 +1,54 @@
+﻿@inherits LayoutComponentBase
+<style>
+    .my-container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .header {
+        background-color: antiquewhite;
+        min-height: 150px;
+    }
+
+    .footer {
+        background-color: azure;
+        min-height: 100px;
+    }
+
+    .wrap {
+        display: flex;
+        min-height: 500px;
+    }
+
+    .nav {
+        background-color: burlywood;
+        min-width: 200px;
+    }
+
+    .content {
+        background-color: gainsboro;
+        flex: 2;
+    }
+</style>
+
+<div class="my-container">
+    <div class="header">
+        Header
+    </div>
+    <div class="wrap">
+        <div class="nav">
+            <NavLink href="/">Go Home</NavLink>
+        </div>
+        <div class="content">
+            @Body
+        </div>
+    </div>
+    <div class="footer">
+        Footer
+    </div>
+</div>
+
+@code {
+
+}
