@@ -1,0 +1,32 @@
+﻿@page "/day21sample"
+@inject HttpClient HttpClient;
+
+<h3>Day21Sample</h3>
+
+<div style="display:flex;flex-wrap:wrap">
+    @foreach (var todoItem in todoItems)
+    {
+        <div style="border:solid 1px black;margin:5px;padding:10px;width:250px;">
+            <p>Id: @(todoItem.Id)</p>
+            <p>UserId: @(todoItem.UserId)</p>
+            <p>Title: @(todoItem.Title)</p>
+            <p>Completed: @(todoItem.Completed)</p>
+        </div>
+    }
+</div>
+
+@code {
+    private List<TodoItem> todoItems { get; set; } = new List<TodoItem>();
+    public class TodoItem
+    {
+        public int UserId { get; set; }
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public bool Completed { get; set; }
+    }
+}
+
+@functions {
+    protected override async Task OnInitializedAsync() =>
+        todoItems = await HttpClient.GetFromJsonAsync<List<TodoItem>>("https://jsonplaceholder.typicode.com/todos");
+}
