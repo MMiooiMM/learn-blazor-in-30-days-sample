@@ -1,0 +1,39 @@
+﻿@page "/day22sample"
+@inject IJSRuntime JSRuntime
+<h3>Day22Sample</h3>
+
+<p>Promise Value: @promiseValue</p>
+<button @onclick="callDotNetAndPrintData">Call DotNet Function By Js Function</button>
+<button @onclick="callDotNetAndPrintData2">Call DotNet Function By Js Function2</button>
+
+@code {
+    private string promiseValue;
+    private DotNetObjectReference<Day22SampleService> objRef;
+}
+
+@functions {
+    protected override async Task OnInitializedAsync()
+    {
+        promiseValue = await CallPromiseAndGetValue();
+        await base.OnInitializedAsync();
+    }
+
+    private async Task<string> CallPromiseAndGetValue()
+    {
+        return await JSRuntime.InvokeAsync<string>("exampleJsFunctions.testPromise");
+    }
+
+    private async Task<string> callDotNetAndPrintData()
+    {
+        return await JSRuntime.InvokeAsync<string>("exampleJsFunctions.callDotNetAndPrintData");
+    }
+
+    private async Task<string> callDotNetAndPrintData2()
+    {
+        objRef = DotNetObjectReference.Create(new Day22SampleService());
+        return await JSRuntime.InvokeAsync<string>("exampleJsFunctions.callDotNetAndPrintData2", objRef);
+    }
+
+    [JSInvokable]
+    public static int Sum(int a, int b) => a + b;
+}
