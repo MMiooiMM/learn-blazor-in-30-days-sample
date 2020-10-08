@@ -1,0 +1,45 @@
+﻿@page "/day23sample"
+@inject Day23SampleModel Day23SampleModel
+@inject IJSRuntime JSRuntime;
+
+<h3>Day23Sample</h3>
+
+<p>
+    Day23SampleModel.Value: @Day23SampleModel.Value
+</p>
+
+<input @bind="Day23SampleModel.Value" />
+
+
+<p>
+    LocalStorage: @localStorageValue
+</p>
+<input @bind="localStorageValue" />
+<button @onclick="Save">Save</button>
+
+<NavLink href="/day23.2sample">Go To Day23Sample2</NavLink>
+
+@code {
+    private string localStorageValue;
+
+    protected override async Task OnInitializedAsync()
+    {
+        localStorageValue = await GetLocalStorageItem("test");
+        await base.OnInitializedAsync();
+    }
+
+    public async Task Save()
+    {
+        await SetLocalStorageItem("test", this.localStorageValue);
+    }
+
+    public async Task SetLocalStorageItem(string key, string value)
+    {
+        await JSRuntime.InvokeVoidAsync("exampleJsFunctions.setLocalStorageItem", key, value);
+    }
+
+    public async Task<string> GetLocalStorageItem(string key)
+    {
+        return await JSRuntime.InvokeAsync<string>("exampleJsFunctions.getLocalStorageItem", key);
+    }
+}

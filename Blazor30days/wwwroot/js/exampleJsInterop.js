@@ -20,5 +20,11 @@
             .then(data => {
                 console.log(data);
             });
+    },
+    setLocalStorageItem: function (key, value) {
+        localStorage.setItem(key, value);
+    },
+    getLocalStorageItem: function (key) {
+        return localStorage.getItem(key);
     }
 };
