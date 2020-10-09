@@ -1,0 +1,12 @@
+﻿@page "/day24sample"
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+@inject TestConfig TestConfig
+<h3>Day24Sample</h3>
+
+<p>@Configuration["message"]</p>
+<p>@Configuration["data:message"]</p>
+<p>@Configuration["value"]</p>
+<p>@TestConfig.Message</p>
+@code {
+}
