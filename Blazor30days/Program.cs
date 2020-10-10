@@ -28,7 +28,10 @@ namespace Blazor30days
             using var response = await client.GetAsync("mysettings.json");
             using var stream = await response.Content.ReadAsStreamAsync();
             builder.Configuration.AddJsonStream(stream);
+            if (builder.HostEnvironment.IsDevelopment())
+            {
 
+            }
             await builder.Build().RunAsync();
         }
     }

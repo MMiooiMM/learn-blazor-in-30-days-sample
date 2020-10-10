@@ -1,0 +1,13 @@
+﻿@page "/day25sample"
+@using Microsoft.AspNetCore.Components.WebAssembly.Hosting
+@inject IWebAssemblyHostEnvironment HostEnvironment
+<h3>Day25Sample</h3>
+
+<p>Environment: @HostEnvironment.Environment</p>
+<p>BaseAddress: @HostEnvironment.BaseAddress</p>
+<p>IsProduction: @HostEnvironment.IsProduction()</p>
+<p>IsStaging: @HostEnvironment.IsStaging()</p>
+<p>IsDevelopment: @HostEnvironment.IsDevelopment()</p>
+@code {
+
+}
