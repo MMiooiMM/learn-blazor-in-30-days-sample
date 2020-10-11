@@ -1,0 +1,22 @@
+﻿@page "/day26sample"
+@inject ILocalStorageService LocalStorageService;
+<h3>Day26Sample</h3>
+<button @onclick="SetUser">Set Token</button>
+<button @onclick="RemoveUser">Remove Token</button>
+<NavLink href="/day26authsample">Go Auth</NavLink>
+@code {
+
+}
+
+@functions{
+    private async Task SetUser()
+    {
+        await LocalStorageService.SetItem<string>("token", @"blazor30days");
+    }
+
+
+    private async Task RemoveUser()
+    {
+        await LocalStorageService.RemoveItem("token");
+    }
+}

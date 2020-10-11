@@ -1,0 +1,17 @@
+﻿@page "/day26authsample"
+@inject IAuthService AuthService
+@inject NavigationManager Navigation
+<h3>Day26AuthSample</h3>
+<NavLink href="/day26sample">Go Back</NavLink>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        if (!await AuthService.Check())
+        {
+            Navigation.NavigateTo("/day26sample");
+        }
+
+        await base.OnInitializedAsync();
+    }
+}

@@ -1,7 +1,9 @@
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Blazor30days.Helpers;
 using Blazor30days.Model;
+using Blazor30days.Services;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,12 +16,25 @@ namespace Blazor30days
         {
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("app");
-            builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+            builder.Services.AddScoped(sp => new HttpClient(new FakeHttpClientHandler()) { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) })
+                            .AddScoped<ILocalStorageService, LocalStorageService>()
+                            .AddScoped<IAuthService, AuthService>();
             builder.Services.AddSingleton<Day23SampleModel>();
+            //builder.Services.AddSingleton(provider =>
+            //{
+            //    var config = provider.GetService<IConfiguration>();
+            //    return config.GetSection("test").Get<TestConfig>();
+            //});
+            //builder.Services.AddSingleton(provider =>
+            //{
+            //    return builder.Configuration.GetSection("test").Get<TestConfig>();
+            //});
+
             builder.Services.AddSingleton(provider =>
             {
-                var config = provider.GetService<IConfiguration>();
-                return config.GetSection("test").Get<TestConfig>();
+                var testConfig = new TestConfig();
+                builder.Configuration.Bind("test", testConfig);
+                return testConfig;
             });
 
             // read JSON file as a stream for configuration
@@ -30,7 +45,6 @@ namespace Blazor30days
             builder.Configuration.AddJsonStream(stream);
             if (builder.HostEnvironment.IsDevelopment())
             {
-
             }
             await builder.Build().RunAsync();
         }
