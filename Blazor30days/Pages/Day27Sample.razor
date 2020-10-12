@@ -1,0 +1,20 @@
+﻿@page "/day27sample"
+
+<h3>Day27Sample</h3>
+<CultureSelector />
+
+@inject Microsoft.Extensions.Localization.IStringLocalizer<Day27Sample> Loc
+
+<h1>@Loc["Greetings"]</h1>
+
+@code {     
+    protected override void OnAfterRender(bool firstRender)
+    {
+        Console.WriteLine(Loc["Greetings"]);
+        foreach (var s in Loc.GetAllStrings(true))
+        {
+            Console.WriteLine(s);
+        }
+        base.OnAfterRender(firstRender);
+    }
+}

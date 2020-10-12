@@ -4,10 +4,13 @@ namespace Blazor30days.Services
 {
     public interface ILocalStorageService
     {
-        Task<T> GetItem<T>(string key);
+        Task<T> GetItemAsync<T>(string key);
 
-        Task SetItem<T>(string key, T value);
+        Task SetItemAsync<T>(string key, T value);
 
-        Task RemoveItem(string key);
+        Task RemoveItemAsync(string key);
+
+        T GetItem<T>(string key);
+        void SetItem<T>(string key, T value);
     }
 }

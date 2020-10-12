@@ -11,12 +11,12 @@
 @functions{
     private async Task SetUser()
     {
-        await LocalStorageService.SetItem<string>("token", @"blazor30days");
+        await LocalStorageService.SetItemAsync<string>("token", @"blazor30days");
     }
 
 
     private async Task RemoveUser()
     {
-        await LocalStorageService.RemoveItem("token");
+        await LocalStorageService.RemoveItemAsync("token");
     }
 }

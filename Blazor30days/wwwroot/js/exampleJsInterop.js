@@ -26,5 +26,9 @@
     },
     getLocalStorageItem: function (key) {
         return localStorage.getItem(key);
-    }
+    }    
+};
+window.blazorCulture = {
+    get: () => window.localStorage['BlazorCulture'],
+    set: (value) => window.localStorage['BlazorCulture'] = value
 };

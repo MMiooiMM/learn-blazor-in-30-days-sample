@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Blazor30days.Helpers;
@@ -7,6 +8,7 @@ using Blazor30days.Services;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.JSInterop;
 
 namespace Blazor30days
 {
@@ -43,8 +45,19 @@ namespace Blazor30days
             using var response = await client.GetAsync("mysettings.json");
             using var stream = await response.Content.ReadAsStreamAsync();
             builder.Configuration.AddJsonStream(stream);
+
+            builder.Services.AddLocalization();
             if (builder.HostEnvironment.IsDevelopment())
             {
+            }
+            var host = builder.Build();
+            var jsInterop = host.Services.GetRequiredService<IJSRuntime>();
+            var result = await jsInterop.InvokeAsync<string>("blazorCulture.get");
+            if (result != null)
+            {
+                var culture = new CultureInfo(result);
+                CultureInfo.DefaultThreadCurrentCulture = culture;
+                CultureInfo.DefaultThreadCurrentUICulture = culture;
             }
             await builder.Build().RunAsync();
         }

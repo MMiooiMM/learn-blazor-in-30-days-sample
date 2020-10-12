@@ -24,7 +24,7 @@ namespace Blazor30days.Services
         {
             var request = new HttpRequestMessage(HttpMethod.Get, "/auth");
 
-            var token = await _localStorageService.GetItem<string>("token");
+            var token = await _localStorageService.GetItemAsync<string>("token");
 
             if (token is null)
             {
