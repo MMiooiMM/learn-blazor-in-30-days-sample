@@ -1,0 +1,5 @@
+﻿@inject Microsoft.JSInterop.IJSRuntime JSRuntime
+<div class="my-component">
+    This Blazor component is defined in the <strong>Blazor30daysRCL</strong> package.
+</div>
+<button @onclick="@(()=>ExampleJsInterop.Prompt(JSRuntime, "Prompt..."))">Click ME</button>
